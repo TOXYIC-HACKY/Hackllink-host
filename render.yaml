@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: myapp
+    env: php
+    buildCommand: ""
+    startCommand: php -S 0.0.0.0:10000 -t public
+    envVars:
+      - key: DB_HOST
+        fromService: mydb
+        property: host
+      - key: DB_USER
+        fromService: mydb
+        property: user
+      - key: DB_PASS
+        fromService: mydb
+        property: password
+      - key: DB_NAME
+        fromService: mydb
+        property: database
+
+databases:
+  - name: mydb
+    plan: free
